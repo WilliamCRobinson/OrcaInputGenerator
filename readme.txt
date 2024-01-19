@@ -36,7 +36,7 @@ Dependencies:
 
     OS package for using OS dependent functionalities.
 
-Notes:
+Usage notes:
 
     This script will generate input files that reference xyz files,so when you go to run your jobs, be sure that the
     xyz files are also present
@@ -51,6 +51,8 @@ Notes:
     You cannot have certain Orca syntax in the template.orca file, unfortunately the curly brackets will be interpreted
     as things that need to be filled in, and it will fail to generate an input file. That stuff will have to be
     brute-force copy and pasted into place
+
+    keys in the config.ini can be left blank and the corresponding entry will be left out of the input file
 
 Using this python package:
 

@@ -1,0 +1,4 @@
+! ZORA-def2-TZVP UKS 1.0e-6 CPCM ZORA D3BJ SARC/J veryTightSCF veryTightOpt Grid6 FinalGrid7 verySlowConv PrintBasis BHandHLYP
+
+* xyzfile 1 0 ../../molecule1.xyz
+

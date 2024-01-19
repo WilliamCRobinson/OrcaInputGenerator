@@ -16,7 +16,6 @@ Project Structure:
                         parameters.
         o	Methods:
             	load_template_file(template_path): Loads the template Orca input file.
-            	load_structure_from_file(file_path): Loads the molecular structure from an XYZ file.
             	set_molecular_charge(charge): Sets the molecular charge for the structure.
             	set_spin_multiplicity(multiplicity): Sets the spin multiplicity for the structure.
             	generate_input_file(molecular_config, calculation_params): Generates an Orca input file based on the
@@ -35,19 +34,18 @@ Project Structure:
 
 Dependencies:
 
-    OS package for manipulating files on various OS's.
+    OS package for using OS dependent functionalities.
 
 Notes:
 
-    The project assumes that XYZ files are generated from Orca and are compatible.
+    This script will generate input files that reference xyz files,so when you go to run your jobs, be sure that the
+    xyz files are also present
+
     Adjust the template file and placeholders based on your specific Orca input file format and requirements.
+
     Ensure that the required files (template, XYZ files, configuration file) are present in the specified paths
 
-Planned Functionality:
-
-The ability to specify SBDFT jobs and TDDFT jobs with unique flip-spins and finalMS. This will probably involve adding
-some if statements to the generate_input_file would be nice if we just had to specify a path to an xyz file in the
-config.ini file.
+    The template file can be adjusted with plaintext, but if you mess with the curly bracket terms, it WILL break things.
 
 Using this python package:
 
@@ -56,9 +54,12 @@ file names into there, specify the parameters and the program should write every
 there. Adjust the template.orca file as necessary if all your calcs are gonna have the same block. Also feel free to add
 stuff to the
 
-1. make all your xyz files.
+1. make all your xyz files. or move them all to one directory and download using some wildcard commands
+        ie "mv finishedjobs/*/*/*.xyz directory_of_xyzfiles"
+        though if you do this be sure to remove .trj and gori files
 2. put all them in the data directory in this python package.
 3. set up config.ini with what type of calculation you would like to run on these geometries.
+    planned script: generate an easily edited config.ini from a directory of xyz files.
 4. Adjust the template.orca to your project needs and let it go.
 4. run the python program.
 5. Check the output directory for your new orca inputs, add in extra blocks as needed.

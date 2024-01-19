@@ -45,7 +45,12 @@ Notes:
 
     Ensure that the required files (template, XYZ files, configuration file) are present in the specified paths
 
-    The template file can be adjusted with plaintext, but if you mess with the curly bracket terms, it WILL break things.
+    The template file can be adjusted with plaintext, but if you mess with the curly bracket terms, it WILL break
+    things.
+
+    You cannot have certain Orca syntax in the template.orca file, unfortunately the curly brackets will be interpreted
+    as things that need to be filled in, and it will fail to generate an input file. That stuff will have to be
+    brute-force copy and pasted into place
 
 Using this python package:
 

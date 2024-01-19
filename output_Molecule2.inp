@@ -1,17 +1,4 @@
-! Template for Orca Input File
+! 6-31G UKS 1.0e-6
 
-%pal
-    nprocs 32
-end
+* xyzfile 2 1 ../../molecule2.xyz
 
-* xyz 0 1
-   Atom1     0.0    0.0    0.0
-   Atom2     1.0    0.0    0.0
-   Atom3     0.0    1.0    0.0
-*
-
-%output
-   Print[P_Hirshfeld_Charges]
-   Print[SFO]
-   Print[MO(1)]
-%end

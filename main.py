@@ -53,7 +53,7 @@ def main():
         else:
             print("Failed to load the template file. Check the path and file permissions.")
 
-        print("iterating over molecular configurations...")
+        print("iterating over molecular configurations...\n")
         # iterate over molecular configurations
         for config_name, molecular_config in molecular_configs.items():
             print("generating input for " + str(config_name), "...\n")
@@ -62,9 +62,8 @@ def main():
                 print("input content exists! saving!!")
                 output_filename = f'output_{config_name}.inp'
                 input_generator.save_input_file(output_filename, input_content)
-                print(f"input file saved to {output_filename}")
             else:
-                print("no input content to add! Woe is you.")
+                print("no input content to add! Woe is you.\n")
 
 
 if __name__ == "__main__":

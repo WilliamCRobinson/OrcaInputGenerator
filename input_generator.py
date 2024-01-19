@@ -12,10 +12,7 @@ Class methods
     load_template_file(template_path): Loads the template Orca input file.
 
     generate_input_file(molecular_config, calculation_params): Generates an Orca input file based on the
-                                                               given molecular configuration and calculation parameters.
-
-    load_structure_from_file(self, template_path): tries to load the template file,
-                                                   throws a nice clear exception if it cant
+                                                               given molecular configuration and calculation parameters
 
     save_input_file(output_path, input_content): Saves the generated input file to the specified output directory.
 
@@ -24,9 +21,6 @@ Class methods
     generate_input_file(self, molecular_config, calculation_params): generates an input file based on all other specs.
 
 """
-
-from ase.io import read
-
 
 class InputGenerator:
     def __init__(self):
@@ -44,16 +38,6 @@ class InputGenerator:
         except Exception as e:
             print(f"Error loading template file: {e}")
             return False
-
-    def load_structure_from_file(self, file_path):
-        print("loading structure from file...")
-        try:
-            structure = read(file_path, format='xyz')
-            print("structure from file loaded!")
-            return structure
-        except Exception as e:
-            print(f"Error loading structure from file: {e}")
-            return None
 
     def set_molecular_charge(self, charge):
         print("setting molecular charge...")
@@ -94,17 +78,17 @@ class InputGenerator:
                 return None
 
             # Load molecular structure
-            molecular_structure = self.load_structure_from_file(structure_file_path)
-            if molecular_structure is None:
-                print("Error: Failed to load molecular structure.")
-                return None
+            #molecular_structure = self.load_structure_from_file(structure_file_path)
+            #if molecular_structure is None:
+            #    print("Error: Failed to load molecular structure.")
+            #    return None
 
             # Replace placeholders in the template with actual values
             input_content = self.template_file.format(
                 basis_set=calculation_params.get('basis_set'),
                 method=calculation_params.get('method'),
                 convergence=calculation_params.get('convergence'),
-                structure=molecular_structure,
+                structure=structure_file_path,
                 charge=molecular_charge,
                 multiplicity=spin_multiplicity
             )
@@ -120,7 +104,7 @@ class InputGenerator:
         try:
             with open(output_path, 'w') as output_file:
                 output_file.write(input_content)
-            print(f"Input file saved to {output_path}!")
+            print(f"***\nInput file saved to {output_path}!\n***\n")
         except Exception as e:
             print(f"Error saving input file: {e}")
 

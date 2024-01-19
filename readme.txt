@@ -35,7 +35,7 @@ Project Structure:
 
 Dependencies:
 
-    ASE (Atomic Simulation Environment) for XYZ file parsing (pip install ase).
+    OS package for manipulating files on various OS's.
 
 Notes:
 
@@ -53,11 +53,13 @@ Using this python package:
 
 Basically, dump all your geometries into the data directory, then set up a configuration file copy and paste all your
 file names into there, specify the parameters and the program should write everything according to the template from
-there.
+there. Adjust the template.orca file as necessary if all your calcs are gonna have the same block. Also feel free to add
+stuff to the
 
 1. make all your xyz files.
 2. put all them in the data directory in this python package.
 3. set up config.ini with what type of calculation you would like to run on these geometries.
+4. Adjust the template.orca to your project needs and let it go.
 4. run the python program.
 5. Check the output directory for your new orca inputs, add in extra blocks as needed.
 

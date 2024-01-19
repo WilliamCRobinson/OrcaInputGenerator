@@ -13,7 +13,8 @@ def main():
     Main function orchestrating the generation of Orca input files.
 
     Workflow:
-    1. Initialize ConfigurationReader to read molecular configurations and calculation parameters from config.ini.
+    1. Initialize ConfigurationReader to read molecular configurations and calculation parameters from a config.ini
+       file.
     2. Load molecular configurations and calculation parameters.
     3. Initialize InputGenerator and load the template Orca input file.
     4. Iterate over molecular configurations, generate Orca input files, and save them to the output directory.
@@ -22,9 +23,15 @@ def main():
     print("****")
     print("Initializing config reader...")
     configuration_reader = ConfigurationReader()
+    # while running this it should call the create_configuration_file if there is no config.ini
+    if not os.path.exists("config.ini"):
+        print("config.ini not found. Creating a new one...")
+        os.system("python create_configuration_file.py")
+
+    config_to_use = input("please enter the exact name of your .ini file: ")
 
     # Load config file
-    if configuration_reader.load_config_file("config.ini"):
+    if configuration_reader.load_config_file(config_to_use):
         print("****")
         print("Reading calculation and molecular parameters...")
 
@@ -54,7 +61,10 @@ def main():
                 print("Input content exists! Saving!!")
                 output_filename = f'{config_name}.inp'
                 input_generator.save_input_file(output_filename, input_content)
-                os.rename(output_filename, f"output\\{output_filename}")
+                try:
+                    os.rename(output_filename, f"output\\{output_filename}")
+                except Exception as e:
+                    print(f"Error, could not move output file:{e}")
             else:
                 print("No input content to add! Woe is you.\n")
 

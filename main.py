@@ -52,8 +52,9 @@ def main():
             input_content = input_generator.generate_input_file(molecular_config, calculation_params)
             if input_content:
                 print("Input content exists! Saving!!")
-                output_filename = f'output_{config_name}.inp'
+                output_filename = f'{config_name}.inp'
                 input_generator.save_input_file(output_filename, input_content)
+                os.rename(output_filename, f"output\\{output_filename}")
             else:
                 print("No input content to add! Woe is you.\n")
 

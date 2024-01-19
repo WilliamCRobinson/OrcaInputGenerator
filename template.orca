@@ -1,4 +1,4 @@
-! {basis_set} {method} {convergence}
+! {basis_set} {method} {convergence} {special_params}
 
 * xyzfile {multiplicity} {charge} {structure}
 

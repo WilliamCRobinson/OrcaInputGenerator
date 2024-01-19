@@ -88,6 +88,7 @@ class InputGenerator:
                 basis_set=calculation_params.get('basis_set'),
                 method=calculation_params.get('method'),
                 convergence=calculation_params.get('convergence'),
+                special_params=calculation_params.get('special'),
                 structure=structure_file_path,
                 charge=molecular_charge,
                 multiplicity=spin_multiplicity

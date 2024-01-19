@@ -1,4 +1,4 @@
-! {basis_set} {method} {convergence} {special_params}
+! {basis_set} {method} {convergence} {special_params} {DFT_functional}
 
 * xyzfile {multiplicity} {charge} {structure}
 

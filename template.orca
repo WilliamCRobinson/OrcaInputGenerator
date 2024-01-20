@@ -1,5 +1,7 @@
 ! {method} {basis_set} {DFT_functional} {convergence} {special_params}
 
+#this is a BS-DFT calculation
+
 %pal nprocs 32 end
 
 %maxcore 8000
@@ -15,11 +17,11 @@ end
   DIISMaxEq 15
   directresetfreq 1
   #guessmode cmatrix
-	flipspin 2
-	finalms 4.5
+	flipspin 0
+	finalms 0.5
 end
 
-#aab conf.
+#aba conf.
 
 %basis
 	NewGTO Fe "CP(PPP)" end
@@ -39,10 +41,14 @@ End
  SpecialGridIntAcc 7
 end
 
-* xyz {multiplicity} {charge}
+# newGTO "EPR-III" end
+#adjust charge and apply newGTO "EPR-III" end to the carbon radical and attached atoms. (atom 3)
+
+* xyz  {charge} {multiplicity}
 {coordinates}
 *
 
-#Be sure to add anything else you need in. Orbital plots and EPR block specs cant be done this way at this time.
+# Be sure to add anything else you need in. Orbital plots and EPR block specs cant be done this way at this time.
+# OrcaInputGenerator generated input file. Always double check!
 
 

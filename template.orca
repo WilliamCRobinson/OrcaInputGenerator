@@ -1,4 +1,48 @@
-! {basis_set} {method} {convergence} {special_params} {DFT_functional}
+! {method} {basis_set} {DFT_functional} {convergence} {special_params}
 
-* xyzfile {multiplicity} {charge} {structure}
+%pal nprocs 32 end
+
+%maxcore 8000
+
+#BE SURE TO ADJUST THIS LINE BEFORE SUBMITTING IT WILL BE DIFFERENT FOR EACH JOB
+
+%cpcm
+ epsilon 20
+end
+
+%scf
+  maxiter 3000
+  DIISMaxEq 15
+  directresetfreq 1
+  #guessmode cmatrix
+	flipspin 2
+	finalms 4.5
+end
+
+#aab conf.
+
+%basis
+	NewGTO Fe "CP(PPP)" end
+	NewGTO S "def2-TZVP" end
+end
+
+%method
+Z_solver DIIS
+Z_MaxIter 128 # maximum number of CP-SCF iterations
+Z_MaxDIIS 5 # for DIIS: maximum number of expansion vectors
+Z_Shift 0.3 # for DIIS: level shift
+Z_Tol 1e-6 # convergence tolerance on residual
+End
+
+%method
+ SpecialGridAtoms 26
+ SpecialGridIntAcc 7
+end
+
+* xyz {multiplicity} {charge}
+{coordinates}
+*
+
+#Be sure to add anything else you need in. Orbital plots and EPR block specs cant be done this way at this time.
+
 

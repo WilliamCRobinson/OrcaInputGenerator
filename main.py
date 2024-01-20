@@ -47,7 +47,7 @@ def main():
 
         # Load template file
         if input_generator.load_template_file(template_path):
-            # Proceed with other operations, such as generating input files
+            # generate input file
             input_generator.generate_input_file(molecular_configs, calculation_params)
         else:
             print("Failed to load the template file. Check the path and file permissions.")

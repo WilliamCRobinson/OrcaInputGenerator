@@ -64,7 +64,7 @@ class ConfigurationReader:
         try:
             molecular_configs = {}
             for section_name in self.config.sections():
-                if section_name.startswith('Molecule'):
+                if not section_name.startswith('Calculation'):
                     molecular_configs[section_name] = dict(self.config.items(section_name))
             return molecular_configs
         except (configparser.Error, KeyError) as e:

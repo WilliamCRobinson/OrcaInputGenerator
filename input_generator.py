@@ -1,3 +1,4 @@
+import os
 class InputGenerator:
     """
     InputGenerator class is responsible for generating input files for Orca calculations based on a template file.
@@ -23,6 +24,9 @@ class InputGenerator:
 
         save_input_file(output_path: str, input_content: str):
             Saves the generated input file to the specified output path.
+
+        get_coordinates_from_xyz(structure_file_path: str) -> str:
+            gets coordinates from the xyz file and stores them in a string.
     """
     def __init__(self):
         """
@@ -87,7 +91,7 @@ class InputGenerator:
             print(f"Error setting spin multiplicity: {e}")
             return 1
 
-    def generate_input_file(self, molecular_config: dict, calculation_params: dict) -> str:
+    def generate_input_file(self, molecular_config: dict, calculation_params: dict) -> None:
         """
         Generates an Orca input file based on molecular configuration and calculation parameters.
 
@@ -101,6 +105,8 @@ class InputGenerator:
         try:
             print("Writing parameters to input...")
             structure_file_path = molecular_config.get('structure_file')
+            print("Absolute Path:", os.path.abspath(structure_file_path))
+            xyz_coordinates = self.get_coordinates_from_xyz(structure_file_path)
             molecular_charge = self.set_molecular_charge(molecular_config.get('charge'))
             spin_multiplicity = self.set_spin_multiplicity(molecular_config.get('spin_multiplicity'))
 
@@ -115,7 +121,7 @@ class InputGenerator:
                 convergence=calculation_params.get('convergence'),
                 special_params=calculation_params.get('special'),
                 DFT_functional=calculation_params.get('dftfunctional'),
-                structure=structure_file_path,
+                coordinates=xyz_coordinates,
                 charge=molecular_charge,
                 multiplicity=spin_multiplicity
             )
@@ -141,4 +147,18 @@ class InputGenerator:
         except Exception as e:
             print(f"Error saving input file: {e}")
 
-
+    def get_coordinates_from_xyz(self, structure_file_path: str):
+        try:
+            print("getting coordinates from xyz file...")
+            with open(structure_file_path, 'r') as xyz_file:
+                # skip the number of atoms and the file header
+                next(xyz_file)
+                next(xyz_file)
+                # read coords, join at newline character and remove excess whitespaces
+                coordinates = "\n".join(line.strip() for line in xyz_file)
+                print("xyz coordinates obtained")
+                print(str(coordinates))
+                return coordinates
+        except Exception as e:
+            print(f"Error obtaining xyz coordinates: {e}")
+            return None

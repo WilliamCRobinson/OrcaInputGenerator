@@ -23,6 +23,7 @@ Project Structure:
                                                                            parameters.
             	save_input_file(output_path, input_content): Saves the generated input file to the specified output
                 directory.
+               get_coordinates_from_xyz(xyzfile): grabs coordinates from xyz file and returns string.
 
 
 2.	Configuration Reader Module (config_reader.py):
@@ -65,11 +66,12 @@ stuff to the
         ie "mv finishedjobs/*/*/*.xyz directory_of_xyzfiles"
         though if you do this be sure to remove .trj and gori files
 2. put all them in the data directory in this python package.
-3. set up config.ini with what type of calculation you would like to run on these geometries.
-    planned script: generate an easily edited config.ini from a directory of xyz files.
-4. Adjust the template.orca to your project needs and let it go.
-4. run the python program.
-5. Check the output directory for your new orca inputs, add in extra blocks as needed.
+3. Adjust the template.orca to your project needs and let it go.
+4. set up config.ini with what type of calculation you would like to run on these geometries.
+4a. wait for the program to ask you for a custom script and go along with prompts to specify
+5. run the python program.
+6. Check the output directory for your new orca inputs, add in extra blocks as needed. Always double check thoroughly
+before submitting.
 
 Project File structure
 

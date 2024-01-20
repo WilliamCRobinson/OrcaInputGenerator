@@ -1,6 +1,15 @@
 """
 Main script orchestrating the workflow for generating Orca input files.
 
+Idea: expand functionality to multiple template.orca files for different types of calcs. ie project specific templates.
+        could also clean up implementation by just having one section header section.
+
+        A handy bash script for renaming output files
+        for file in *.png; do
+            mv "$file" "${file%.inp}_resubx.inp"
+        done
+
+
 - William Robinson Jan 2024. Montana State University.
 """
 
@@ -26,6 +35,8 @@ def main():
     # while running this it should call the create_configuration_file if there is no config.ini
     if not os.path.exists("config.ini"):
         print("config.ini not found. Creating a new one...")
+        os.system("python create_configuration_file.py")
+    elif input("would you to make a new .ini file? (y/n)") == y:
         os.system("python create_configuration_file.py")
 
     config_to_use = input("please enter the exact name of your .ini file: ")

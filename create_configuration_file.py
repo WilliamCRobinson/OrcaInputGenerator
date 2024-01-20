@@ -20,7 +20,7 @@ def create_configuration_file():
 
     # Create sections for each molecule in the config file
     for i, xyz_file in enumerate(xyz_files, start=1):
-        section_name = f'Molecule{i}'
+        section_name = f'Molecule{xyz_file}{i}'
         config[section_name] = {}
         config[section_name]['structure_file'] = xyz_file
         config[section_name]['charge'] = input(f"Enter Charge for {xyz_file}: ")

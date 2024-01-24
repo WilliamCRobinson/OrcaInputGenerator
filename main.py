@@ -17,6 +17,7 @@ from input_generator import InputGenerator
 from configuration_reader import ConfigurationReader
 import os
 
+
 def main():
     """
     Main function orchestrating the generation of Orca input files.
@@ -36,7 +37,7 @@ def main():
     if not os.path.exists("config.ini"):
         print("config.ini not found. Creating a new one...")
         os.system("python create_configuration_file.py")
-    elif input("would you to make a new .ini file? (y/n)") == y:
+    elif input("would you to make a new .ini file? (y/n)") == "y":
         os.system("python create_configuration_file.py")
 
     config_to_use = input("please enter the exact name of your .ini file: ")

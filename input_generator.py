@@ -116,11 +116,9 @@ class InputGenerator:
 
             # Replace placeholders in the template with actual values
             input_content = self.template_file.format(
-                basis_set=calculation_params.get('basis_set'),
-                method=calculation_params.get('method'),
-                convergence=calculation_params.get('convergence'),
-                special_params=calculation_params.get('special'),
-                DFT_functional=calculation_params.get('dftfunctional'),
+                header=calculation_params.get('header'),
+                nproc=calculation_params.get("nproc"),
+                mem=calculation_params.get('mem'),
                 coordinates=xyz_coordinates,
                 charge=molecular_charge,
                 multiplicity=spin_multiplicity

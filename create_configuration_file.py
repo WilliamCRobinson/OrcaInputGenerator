@@ -10,11 +10,10 @@ def create_configuration_file():
 
     # Get user input for calculation parameters
     config['CalculationParameters'] = {}
-    config['CalculationParameters']['method'] = input("Enter method: ")
-    config['CalculationParameters']['basis_set'] = input("Enter Basis Set: ")
-    config['CalculationParameters']['DFTFunctional'] = input("Enter DFT Functional: ")
-    config['CalculationParameters']['convergence'] = input("Enter Convergence: ")
-    config['CalculationParameters']['special'] = input("Enter any special header parameters: ")
+    config['CalculationParameters']['header'] = input("Enter header: ")
+    config['CalculationParameters']['mem'] = input("Enter memory: ")
+    config['CalculationParameters']['nproc'] = input("Enter number of processors: ")
+
 
     # Get xyz files in the directory called xyzdata
     xyz_files = [file for file in os.listdir("xyzdata") if file.endswith(".xyz")]

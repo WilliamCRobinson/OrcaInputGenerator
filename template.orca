@@ -1,48 +1,12 @@
-! {method} {basis_set} {DFT_functional} {convergence} {special_params}
+! {header}
 
-#this is a BS-DFT calculation
+# Curly brackets indicate where dictionary entries will be written.
 
-%pal nprocs 32 end
+%pal nprocs {nproc} end
 
-%maxcore 8000
+%maxcore {mem}
 
-#BE SURE TO ADJUST THIS LINE BEFORE SUBMITTING IT WILL BE DIFFERENT FOR EACH JOB
-
-%cpcm
- epsilon 20
-end
-
-%scf
-  maxiter 3000
-  DIISMaxEq 15
-  directresetfreq 1
-  #guessmode cmatrix
-	flipspin 0
-	finalms 0.5
-end
-
-#aba conf.
-
-%basis
-	NewGTO Fe "CP(PPP)" end
-	NewGTO S "def2-TZVP" end
-end
-
-%method
-Z_solver DIIS
-Z_MaxIter 128 # maximum number of CP-SCF iterations
-Z_MaxDIIS 5 # for DIIS: maximum number of expansion vectors
-Z_Shift 0.3 # for DIIS: level shift
-Z_Tol 1e-6 # convergence tolerance on residual
-End
-
-%method
- SpecialGridAtoms 26
- SpecialGridIntAcc 7
-end
-
-# newGTO "EPR-III" end
-#adjust charge and apply newGTO "EPR-III" end to the carbon radical and attached atoms. (atom 3)
+#Include repetitive blocks here
 
 * xyz  {charge} {multiplicity}
 {coordinates}
@@ -50,5 +14,3 @@ end
 
 # Be sure to add anything else you need in. Orbital plots and EPR block specs cant be done this way at this time.
 # OrcaInputGenerator generated input file. Always double check!
-
-

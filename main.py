@@ -80,6 +80,9 @@ def main():
             else:
                 print("No input content to add! Woe is you.\n")
 
-
+"""
+Could save custom blocks as list of lines, and then depending on user input manually write those in at the end of file
+generation so that python doesnt see the curly braces as inputs it needs to find in the config.ini
+"""
 if __name__ == "__main__":
     main()
